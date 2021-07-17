@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PrestamoServicio {
@@ -26,6 +27,7 @@ public class PrestamoServicio {
     @Autowired
     private ClienteRepositorio clienteRepositorio;
 
+    @Transactional
     public Prestamo altaPrestamo(Long idCliente, Long isbnLibro) throws ErrorServicio {
         validar(idCliente);
 
@@ -49,6 +51,7 @@ public class PrestamoServicio {
         return prestamoRepositorio.save(prestamo);
     }
 
+    @Transactional
     public void bajaPrestamo(String idPrestamo, Long isbnLibro) throws ErrorServicio {
         Optional<Prestamo> respuesta = prestamoRepositorio.findById(idPrestamo);
         if (respuesta.isPresent()) {
@@ -71,6 +74,7 @@ public class PrestamoServicio {
         }
     }
 
+    @Transactional
     public Prestamo altaPrestamoTitulo(Long idCliente, String tituloLibro) throws ErrorServicio {
         validar(idCliente);
 

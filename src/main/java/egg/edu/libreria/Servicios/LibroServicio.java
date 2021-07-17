@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class LibroServicio {
@@ -14,6 +15,7 @@ public class LibroServicio {
     @Autowired
     private LibroRepositorio libroRepositorio;
 
+    @Transactional
     public Libro guardar(Long isbn, String titulo, Integer anio, Integer ejemplares) throws ErrorServicio {
         validar(isbn, titulo, anio, ejemplares);
 
@@ -28,6 +30,7 @@ public class LibroServicio {
         return libroRepositorio.save(libro);
     }
 
+    @Transactional
     public Libro alta(Long isbn) {
 
         Libro libro = libroRepositorio.getById(isbn);
@@ -36,6 +39,7 @@ public class LibroServicio {
         return libroRepositorio.save(libro);
     }
 
+    @Transactional
     public Libro baja(Long isbn) {
 
         Libro libro = libroRepositorio.getById(isbn);

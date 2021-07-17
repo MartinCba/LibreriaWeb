@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ClienteServicio {
@@ -14,6 +15,7 @@ public class ClienteServicio {
     @Autowired
     private ClienteRepositorio clienteRepositorio;
 
+    @Transactional
     public Cliente guardar(Long documento, String nombre, String apellido, String domicilio, String telefono) throws ErrorServicio {
         validar(documento, nombre, apellido, domicilio, telefono);
 
@@ -28,6 +30,7 @@ public class ClienteServicio {
         return clienteRepositorio.save(cliente);
     }
 
+    @Transactional
     public Cliente alta(Long documento) {
 
         Cliente cliente = clienteRepositorio.getById(documento);
@@ -36,6 +39,7 @@ public class ClienteServicio {
         return clienteRepositorio.save(cliente);
     }
 
+    @Transactional
     public Cliente baja(Long documento) {
 
         Cliente cliente = clienteRepositorio.getById(documento);
