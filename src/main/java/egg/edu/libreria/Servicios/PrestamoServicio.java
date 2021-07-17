@@ -61,7 +61,6 @@ public class PrestamoServicio {
                 if (prestamo.getDevolucion().getTime() < fechaEntrega.getTime()) {
                     prestamo.setDevolucion(new Date());
                     prestamo.setMulta(500.0);
-                    System.out.println("Su prestamo ya habia expirado, debe abonar una multa de : " + prestamo.getMulta());
                     prestamo.setPrestamoActivo(false);
                 } else {
                     prestamo.setDevolucion(new Date());
